@@ -11,7 +11,8 @@ function Error(props: ErrorMessageProps) {
       <p className="text-red-700 text-2xl mb-4">{errorMessage}</p>
       <button
         className="px-4 py-2 rounded text-white cursor-pointer bg-emerald-600"
-        onClick={refetch}
+        onClick={refetch ?? (() => {})}
+        disabled={!refetch}
       >
         Fetch Again
       </button>
