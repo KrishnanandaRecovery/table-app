@@ -1,5 +1,7 @@
+import Posts from "./components/Posts";
+
 function App() {
-  return "Hello World";
+  return <Posts />;
 }
 
 export default App;
