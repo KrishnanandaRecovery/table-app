@@ -16,7 +16,7 @@ function Posts() {
   return (
     <div className="p-9">
       <h2 className="text-3xl font-medium mb-5">Posts Table</h2>
-      <PostTable />
+      <PostTable posts={data} />
     </div>
   );
 }
