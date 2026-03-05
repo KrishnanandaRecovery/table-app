@@ -1,15 +1,19 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../store/features/modalSlice";
 import type { PostProps } from "../store/services/types";
 import { truncateString } from "../utils/helper";
-import { useLazyGetPostByIdQuery } from "../store/services/post";
 
 function PostTable(props: { posts: PostProps[] | undefined }) {
   const { posts } = props;
-  const [trigger, { isLoading, error, data }] = useLazyGetPostByIdQuery();
+  const dispatch = useDispatch();
 
-  const handleRowClick = (id: number) => trigger(id);
-
-  console.log("fetching post", isLoading, error, data);
+  const handleRowClick = useCallback(
+    (id: number) => {
+      dispatch(openModal(id));
+    },
+    [dispatch],
+  );
 
   return (
     <table className="w-full text-left border-3 border-gray-300">

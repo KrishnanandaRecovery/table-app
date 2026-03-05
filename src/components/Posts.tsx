@@ -1,23 +1,28 @@
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 import { useGetPostsQuery } from "../store/services/post";
 import Error from "../utils/Error";
 import Loader from "../utils/Loader";
+import Modal from "../utils/Modal";
 import PostTable from "./PostTable";
 
 const errorMessage = "Something went wrong while fetching posts!";
 
 function Posts() {
   const { isLoading, data, error, refetch } = useGetPostsQuery();
+  const modalData = useSelector((state: RootState) => state.modal);
 
   if (isLoading) return <Loader />;
   if (error) return <Error errorMessage={errorMessage} refetch={refetch} />;
 
-  console.log(data);
-
   return (
-    <div className="p-9">
-      <h2 className="text-3xl font-medium mb-5">Posts Table</h2>
-      <PostTable posts={data} />
-    </div>
+    <>
+      {modalData.isOpen && <Modal />}
+      <div className="p-9">
+        <h2 className="text-3xl font-medium mb-5">Posts Table</h2>
+        <PostTable posts={data} />
+      </div>
+    </>
   );
 }
 
