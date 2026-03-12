@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 interface DropdownProps {
   dropDownValue: number;
   dropDownOptions: number[];
-  dropDownOnClick: React.Dispatch<React.SetStateAction<number>>;
+  dropDownOnClick: (rows: number) => void;
 }
 
 function Dropdown(props: DropdownProps) {
