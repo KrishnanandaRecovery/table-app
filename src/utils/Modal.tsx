@@ -21,7 +21,7 @@ function Modal() {
   const handleClose = useCallback(() => dispatch(closeModal()), [dispatch]);
 
   return (
-    <div className="w-screen h-screen fixed t-0 l-0 bg-gray-900 opacity-90 flex justify-center items-center overflow-hidden">
+    <div className="w-screen h-screen fixed t-0 l-0 bg-gray-900 opacity-90 flex justify-center items-center overflow-hidden z-10">
       <div className="p-4 w-150 bg-white rounded-md relative">
         <FaWindowClose
           className="text-red-800 text-4xl ml-auto cursor-pointer"

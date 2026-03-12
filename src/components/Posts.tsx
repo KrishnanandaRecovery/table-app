@@ -39,9 +39,9 @@ function Posts() {
 
         <div className="my-2">
           <Dropdown
-            rowsPerPage={rowsPerPage}
-            setRowsPerPage={setRowsPerPage}
-            rowsPerPageOptions={rowsPerPageOptions}
+            dropDownValue={rowsPerPage}
+            dropDownOnClick={setRowsPerPage}
+            dropDownOptions={rowsPerPageOptions}
           />
         </div>
       </div>

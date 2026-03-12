@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 interface DropdownProps {
-  rowsPerPage: number;
-  rowsPerPageOptions: number[] | [];
-  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  dropDownValue: number;
+  dropDownOptions: number[];
+  dropDownOnClick: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function Dropdown(props: DropdownProps) {
-  const { rowsPerPage, setRowsPerPage, rowsPerPageOptions } = props;
+  const { dropDownValue, dropDownOnClick, dropDownOptions } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOptionClick = (option: number) => {
-    setRowsPerPage(option);
-    setIsOpen(false);
-  };
+  const handleOptionClick = useCallback(
+    (option: number) => {
+      dropDownOnClick(option);
+      setIsOpen(false);
+    },
+    [dropDownOnClick],
+  );
+  const dropDownMenu = useMemo(() => {
+    return dropDownOptions.map((option) => (
+      <div
+        key={option}
+        onClick={() => handleOptionClick(option)}
+        className="py-1 not-last:mb-1 not-last:border-b-2 not-last:border-b-gray-200 cursor-pointer"
+      >
+        {option}
+      </div>
+    ));
+  }, [dropDownOptions]);
 
   return (
     <div className="relative inline-block">
@@ -23,7 +37,7 @@ function Dropdown(props: DropdownProps) {
         className="py-2 px-4 border-3 border-gray-300 rounded cursor-pointer hover:bg-gray-100"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        {rowsPerPage}
+        {dropDownValue}
         {isOpen ? (
           <FaCaretUp className="inline-block align-text-top" />
         ) : (
@@ -32,15 +46,7 @@ function Dropdown(props: DropdownProps) {
       </div>
       {isOpen && (
         <div className="mt-1 p-2 rounded border-3 border-gray-300">
-          {rowsPerPageOptions.map((option) => (
-            <div
-              key={option}
-              onClick={() => handleOptionClick(option)}
-              className="py-1 not-last:mb-1 not-last:border-b-2 not-last:border-b-gray-200 cursor-pointer"
-            >
-              {option}
-            </div>
-          ))}
+          {dropDownMenu}
         </div>
       )}
     </div>
