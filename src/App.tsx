@@ -1,10 +1,11 @@
+import useFetchAllProducts from "./hooks/useFetchAllProducts";
+
 function App() {
-  return (
-    <div>
-      Table App (favicon, tailwind, google font, api
-      (https://dummyjson.com/products), icons, tanstack query)
-    </div>
-  );
+  const { isLoading, data, error } = useFetchAllProducts();
+
+  console.log(isLoading, error, data);
+
+  return <div>Table App (fetching products)</div>;
 }
 
 export default App;
