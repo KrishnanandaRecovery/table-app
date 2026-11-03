@@ -158,11 +158,9 @@ function Header() {
               </nav>
             </div>
 
-            <button>
-              <Link to="/login">
-                <CircleUserRound className="w-14 text-blue-500" />
-              </Link>
-            </button>
+            <Link to="/login">
+              <CircleUserRound className="w-14 text-blue-500" />
+            </Link>
           </div>
         </div>
       </div>
