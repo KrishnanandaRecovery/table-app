@@ -34,7 +34,7 @@ function Carousel({ autoSlide, autoSlideInterval, slides }: CarouselInterface) {
 
   return (
     <div
-      className="w-full h-75 relative group"
+      className="w-full h-50 md:h-75 relative group"
       tabIndex={0}
       aria-label="Image Carousel"
       onKeyDown={(e) => handleKeyDown(e)}
